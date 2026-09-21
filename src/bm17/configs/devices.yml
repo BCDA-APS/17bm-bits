@@ -66,6 +66,15 @@ apstools.devices.motor_factory.mb_creator:
     utabh: m49
     dtabh: m50
 
+bm17.devices.ptc10.BM17_PTC10:
+- name: ptc10
+  prefix: "17bmSoft:tc1:"
+  labels: ["temperature", "baseline"]
+  # TODO: implement temperature ramp/equilibration plan_stubs that:
+  # 1. Check furnace setpoint <= 600°C (hard-fail if exceeded)
+  # 2. Set ramp rate and target setpoint
+  # 3. Wait for ptc10.inposition (within tolerance)
+
 ophyd.scaler.ScalerCH:
 - name: scaler1
   prefix: 17bm:scaler1
