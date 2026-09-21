@@ -6,7 +6,7 @@ Instrument Github Repository to be used with BITS structure at the APS
 ## Start a fresh BITS environment with Conda
 
 ```bash
-export ENV_NAME=BITS_env
+export ENV_NAME=17bm-bits
 conda create -y -n $ENV_NAME python=3.12
 conda activate $ENV_NAME
 pip install apsbits
@@ -22,8 +22,7 @@ pixi install
 
 ## Creating a New Instrument
 ```bash
-export YOUR_INSTRUMENT_NAME=new_instrument
-create-bits $YOUR_INSTRUMENT_NAME
+bits-create bm17
 pip install -e .
 ```
 
@@ -36,13 +35,19 @@ To start the bluesky instrument session in a ipython execute the next command in
 ipython
 ```
 
+or (to run the startup automatically):
+
+```bash
+ipython -i -c "from bm17.startup import *
+```
+
 ## Jupyter Notebook Start
 Start JupyterLab, a Jupyter notebook server, or a notebook, VSCode.
 
 ## Starting the BITS Package
 
 ```py
-from YOUR_INSTRUMENT_NAME.startup import *
+from bm17.startup import *
 ```
 
 ## Run Sim Plan Demo
@@ -63,7 +68,7 @@ The files that can be configured to adhere to your preferences are:
 
 - `configs/iconfig.yml` - configuration for data collection
 - `configs/extra_logging.yml` - configuration for session logging to console and/or files
-- `src/YOUR_INSTRUMENT_NAME/qserver/qs-config.yml`    - contains all configuration of the QS host process. See the [documentation](https://blueskyproject.io/bluesky-queueserver/manager_config.html) for more details of the configuration.
+- `src/bm17/qserver/qs-config.yml`    - contains all configuration of the QS host process. See the [documentation](https://blueskyproject.io/bluesky-queueserver/manager_config.html) for more details of the configuration.
 
 ## queueserver
 
@@ -84,7 +89,7 @@ the usual way to (re)start the QS host process. Using `restart`, the process
 runs in the background.
 
 ```bash
-./scripts/YOUR_INSTRUMENT_NAME_qs_host.sh restart
+./scripts/bm17_qs_host.sh restart
 ```
 
 ### Run a queueserver client GUI
@@ -97,11 +102,11 @@ queue-monitor &
 
 ### Shell script explained
 
-A [shell script](https://github.com/BCDA-APS/BITS/blob/main/src/apsbits/demo_qserver/qs_host.sh) (`./scripts/YOUR_INSTRUMENT_NAME_qs_host.sh`) starts the QS host process. Below
+A [shell script](https://github.com/BCDA-APS/BITS/blob/main/src/apsbits/demo_qserver/qs_host.sh) (`./scripts/bm17_qs_host.sh`) starts the QS host process. Below
 are all the command options, and what they do.
 
 ```bash
-(BITS_env) $ ./scripts/YOUR_INSTRUMENT_NAME_qs_host.sh help
+(17bm-bits) $ ./scripts/bm17_qs_host.sh help
 Usage: qs_host.sh {start|stop|restart|status|checkup|console|run} [NAME]
 
     COMMANDS
@@ -117,10 +122,10 @@ Usage: qs_host.sh {start|stop|restart|status|checkup|console|run} [NAME]
         NAME      name of process (default: bluesky_queueserver-)
 ```
 
-Alternatively, run the QS host's startup command directly within the `./src/YOUR_INSTRUMENT_NAME/qserver/`
+Alternatively, run the QS host's startup command directly within the `./src/bm17/qserver/`
 subdirectory.
 
 ```bash
-cd ./src/YOUR_INSTRUMENT_NAME/qserver
+cd ./src/bm17/qserver
 start-re-manager --config=./qs-config.yml
 ```
