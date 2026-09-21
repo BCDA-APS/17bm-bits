@@ -114,3 +114,11 @@ setup_baseline_stream(sd, oregistry, connect=False)
 from .plans.sim_plans import sim_count_plan  # noqa: E402, F401
 from .plans.sim_plans import sim_print_plan  # noqa: E402, F401
 from .plans.sim_plans import sim_rel_scan_plan  # noqa: E402, F401
+
+_scaler = oregistry["scaler1"]
+_scaler.select_channels(None)
+clock_pulses = _scaler.channels.chan01.s
+i1 = _scaler.channels.chan02.s  # PIN diode
+i0 = _scaler.channels.chan03.s  # ion chamber
+i2 = _scaler.channels.chan04.s  # beamstop
+del _scaler
