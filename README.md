@@ -9,6 +9,7 @@ session or Jupyter notebook.  From IPython:
 
 ```bash
 bash
+source /APSshare/miniconda/x86_64/bin/activate
 conda activate 17bm-bits
 ipython -i -c "from bm17.startup import *"
 ```
