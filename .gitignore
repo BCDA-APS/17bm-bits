@@ -172,3 +172,6 @@ dev_*
 
 # Local Run Engine metadata dictionary
 .re_md_dict.yml
+
+# APS IT
+.loglogin
