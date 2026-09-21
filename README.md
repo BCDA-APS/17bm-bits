@@ -1,33 +1,21 @@
 # BITS Starter
 
-Instrument Github Repository to be used with BITS structure at the APS
+Bluesky BITS instrument for the 17-BM powder diffraction beamline.
 
+## Session startup
 
-## Start a fresh BITS environment with Conda
-
-```bash
-export ENV_NAME=17bm-bits
-conda create -y -n $ENV_NAME python=3.12
-conda activate $ENV_NAME
-pip install apsbits
-```
-
-## Start a fresh BITS environment with pixi
-
-**Build the environment** (also installs apsbits and this package, editable):
+You can start a bluesky session in any directory using IPython console
+session or Jupyter notebook.  From IPython:
 
 ```bash
-pixi install
+bash
+conda activate 17bm-bits
+ipython -i -c "from bm17.startup import *"
 ```
 
-## Creating a New Instrument
-```bash
-bits-create bm17
-pip install -e .
-```
+See below for other startups.
 
-
-## IPython console Start
+### IPython console Start
 
 To start the bluesky instrument session in a ipython execute the next command in a terminal:
 
@@ -35,30 +23,39 @@ To start the bluesky instrument session in a ipython execute the next command in
 ipython
 ```
 
-or (to run the startup automatically):
-
-```bash
-ipython -i -c "from bm17.startup import *
-```
-
-## Jupyter Notebook Start
+### Jupyter Notebook Start
 Start JupyterLab, a Jupyter notebook server, or a notebook, VSCode.
 
-## Starting the BITS Package
+### Starting the BITS Package
 
 ```py
 from bm17.startup import *
 ```
 
-## Run Sim Plan Demo
+## Run Sim Plan Demos
 
 To run some simulated plans that ensure the installation worked as expected
 please run the next commands inside an ipython session or a jupyter notebook
 after starting the data acquisition:
 
+### sim_print_plan() - demonstrates a simple plan stub (no data acquired)
+
 ```py
+from bm17.plans.sim_plans import sim_print_plan
 RE(sim_print_plan())
+```
+
+### sim_count_plan() - demonstrates data acquisition with a counter
+
+```py
+from bm17.plans.sim_plans import sim_count_plan
 RE(sim_count_plan())
+```
+
+### sim_rel_scan_plan() - demonstrates data acquisition with a counter & motor
+
+```py
+from bm17.plans.sim_plans import sim_rel_scan_plan
 RE(sim_rel_scan_plan())
 ```
 
@@ -128,4 +125,31 @@ subdirectory.
 ```bash
 cd ./src/bm17/qserver
 start-re-manager --config=./qs-config.yml
+```
+
+## (Re)Installation
+
+These steps describe the installation procedure.
+
+### Start a fresh BITS environment with Conda
+
+```bash
+export ENV_NAME=17bm-bits
+conda create -y -n $ENV_NAME python=3.12
+conda activate $ENV_NAME
+pip install apsbits
+```
+
+### Start a fresh BITS environment with pixi
+
+**Build the environment** (also installs apsbits and this package, editable):
+
+```bash
+pixi install
+```
+
+### Creating a New Instrument
+```bash
+bits-create bm17
+pip install -e .
 ```
