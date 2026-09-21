@@ -139,6 +139,7 @@ class BM17_PTC10(PTC10PositionerMixin, PVPositioner):
     )
 
     def __init__(self, *args, **kwargs):
+        """constructor"""
         super().__init__(*args, **kwargs)
         # Positioner tuning
         self.report_dmov_changes.put(True)  # Log done/moving transitions
