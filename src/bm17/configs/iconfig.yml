@@ -15,8 +15,8 @@ DATABROKER_CATALOG: temp
 ### RunEngine configuration
 RUN_ENGINE:
     DEFAULT_METADATA:
-        beamline_id: demo_instrument
-        instrument_name: Most Glorious Scientific Instrument
+        beamline_id: 17bm
+        instrument_name: 17-BM Powder Diffraction Instrument
         proposal_id: commissioning
 
     ### EPICS PV to use for the `scan_id`.
