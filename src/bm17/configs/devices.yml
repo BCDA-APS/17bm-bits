@@ -4,33 +4,37 @@ apsbits.utils.sim_creator.predefined_device:
 - { creator: ophyd.sim.motor, name: sim_motor }
 - { creator: ophyd.sim.noisy_det, name: sim_det }
 
-## THIS ARE EXAMPLES OF OTHER DEVICES THAT YOU CAN USE
+# ----------------------------------------------------
+## EXAMPLES OF OTHER DEVICES THAT YOU CAN USE
+
+# Hint: USAXS has a PTC10
+
+# Repositories with pre-built devices:
+# https://bcda-aps.github.io/apstools/latest/api/_devices.html
+# https://blueskyproject.io/ophyd/user/reference/builtin-devices.html
+
 # ophyd.Signal:
 # - name: test
 #   value: 50.7
 # - name: t2
 #   value: 2
 
-# apstools.synApps.Optics2Slit2D_HV:
-# - name: slit1
-#   prefix: ioc:Slit1
-#   labels: ["slits", "baseline"]
-
-# hkl.SimulatedE4CV:
-# - name: sim4c
-#   prefix: ""
-#   labels: ["diffractometer"]
+# ophyd.EpicsMotor:
+# - {name: m1, prefix: gp:m1, labels: ["motor"]}
+# - {name: m2, prefix: gp:m2, labels: ["motor"]}
+# - {name: m3, prefix: gp:m3, labels: ["motor"]}
+# - {name: m4, prefix: gp:m4, labels: ["motor"]}
 
 # ophyd.scaler.ScalerCH:
 # - name: scaler1
 #   prefix: vme:scaler1
 #   labels: ["scalers", "detectors"]
 
-# ophyd.EpicsMotor:
-# - {name: m1, prefix: gp:m1, labels: ["motor"]}
-# - {name: m2, prefix: gp:m2, labels: ["motor"]}
-# - {name: m3, prefix: gp:m3, labels: ["motor"]}
-# - {name: m4, prefix: gp:m4, labels: ["motor"]}
+# ophyd.EpicsSignal:
+# - name: usercalc_xmap_filename
+#   write_pv: 2xfmS1:userStringCalc1Enable
+#   read_pv: 2xfmS1:userStringCalc1Enable
+#   labels: ["usercalc"]
 
 # apstools.devices.ad_creator:
 #   - name: adsimdet
@@ -47,3 +51,18 @@ apsbits.utils.sim_creator.predefined_device:
 #           write_path_template: "/path/to/ioc/tmp/"
 #       - roi1
 #       - stats1
+
+# apstools.devices.motor_factory.mb_creator:
+# - name: xyz_stage
+#   labels: ["baseline"]
+#   prefix: "ioc:"              # bundle prefix; prepended to each motor's PV
+#   class_name: SomeXyzStage    # name for the synthesized class (cosmetic)
+#   motors:
+#     x: "m20"    # full motor PV is ioc:m20
+#     y: "m21"
+#     z: "m22"
+
+# apstools.synApps.Optics2Slit2D_HV:
+# - name: slit1
+#   prefix: ioc:Slit1
+#   labels: ["slits", "baseline"]
