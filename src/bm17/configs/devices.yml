@@ -4,6 +4,111 @@ apsbits.utils.sim_creator.predefined_device:
 - { creator: ophyd.sim.motor, name: sim_motor }
 - { creator: ophyd.sim.noisy_det, name: sim_det }
 
+apstools.devices.motor_factory.mb_creator:
+- name: bs
+  class_name: BeamStopStage
+  labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    x: m21
+    y: m22
+    z: m24
+- name: det
+  class_name: DetectorStage
+  # labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    x: m23
+    y: m6
+    z: m33
+- name: nm
+  class_name: NmStage
+  # Part of a monochromator
+  # labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    theta: m44
+    twist: m45
+    chi: m46
+    pitch: m47
+    bend: m48
+    # Also these (might need more hierarchy for this):
+    # utabv = EpicsMotor('17bm:m41', name='utabv', labels=('motor',))
+    # drtabv = EpicsMotor('17bm:m42', name='drtabv', labels=('motor',))
+    # dltabv = EpicsMotor('17bm:m43', name='dltabv', labels=('motor',))
+    # utabh = EpicsMotor('17bm:m49', name='utabh', labels=('motor',))
+    # dtabh = EpicsMotor('17bm:m50', name='dtabh', labels=('motor',))
+
+- name: pin
+  class_name: PinStage
+  labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    x: m17
+    y: m18
+- name: red
+  class_name: RedSampleStage
+  # labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    x: m20
+    y: m16
+- name: sam
+  class_name: SampleStage
+  # labels: ["baseline"]
+  prefix: "17bm:"
+  motors:
+    x: m10
+    y: m11
+    r: m12
+
+ophyd.scaler.ScalerCH:
+- name: scaler1
+  prefix: 17bm:scaler1
+  labels: ["scalers", "detectors"]
+  # scaler1.select_channels(None)
+  # sec = scaler1.channels.chan01.s
+  # i1 = scaler1.channels.chan02.s
+  # i0 = scaler1.channels.chan03.s
+  # bsd = scaler1.channels.chan04.s
+
+ophyd.EpicsSignalRO:
+- name: xeye1
+  read_pv: 17bmVimba:ROIStat1:1:Total_RBV
+  labels: ["xrayEye1"]
+
+# Three sets of slits, s1, s2, & wb
+
+# Perhaps?
+# apstools.synApps.Optics2Slit2D_HV:
+# - name: slit1
+#   prefix: ioc:Slit1
+#   labels: ["slits", "baseline"]
+
+# s1_bot = EpicsMotor('17bm:m28', name='s1_bot', labels=('motor',))
+# s1_top = EpicsMotor('17bm:m27', name='s1_top', labels=('motor',))
+# s1_in = EpicsMotor('17bm:m25', name='s1_in', labels=('motor',))
+# s1_out = EpicsMotor('17bm:m26', name='s1_out', labels=('motor',))
+
+# s2_out = EpicsMotor('17bm:m30', name='s2_out', labels=('motor',))
+# s2_in = EpicsMotor('17bm:m29', name='s2_in', labels=('motor',))
+# s2_bot = EpicsMotor('17bm:m32', name='s2_bot', labels=('motor',))
+# s2_top = EpicsMotor('17bm:m31', name='s2_top', labels=('motor',))
+
+# wb_top = EpicsMotor('17bm:m1', name='wb_top', labels=('motor',))
+# wb_bot = EpicsMotor('17bm:m2', name='wb_bot', labels=('motor',))
+# wb_in = EpicsMotor('17bm:m3', name='wb_in', labels=('motor',))
+# wb_out = EpicsMotor('17bm:m4', name='wb_out', labels=('motor',))
+
+# # Macro Motor: SpecMotor(mne='s1_vgap', config_line='33', macro_prefix='slit', mac_parms='[0, 0]') # misc_par_1=22, misc_par_2=21
+# # Macro Motor: SpecMotor(mne='s1_voff', config_line='34', macro_prefix='slit', mac_parms='[0, 1]') # misc_par_1=22, misc_par_2=21
+# # Macro Motor: SpecMotor(mne='s1_hgap', config_line='35', macro_prefix='slit', mac_parms='[1, 0]') # misc_par_1=23, misc_par_2=24
+# # Macro Motor: SpecMotor(mne='s1_hoff', config_line='36', macro_prefix='slit', mac_parms='[1, 1]') # misc_par_1=23, misc_par_2=24
+# # Macro Motor: SpecMotor(mne='s2_vgap', config_line='37', macro_prefix='slit', mac_parms='[2, 0]') # misc_par_1=28, misc_par_2=27
+# # Macro Motor: SpecMotor(mne='s2_voff', config_line='38', macro_prefix='slit', mac_parms='[2, 1]') # misc_par_1=28, misc_par_2=27
+# # Macro Motor: SpecMotor(mne='s2_hgap', config_line='39', macro_prefix='slit', mac_parms='[3, 0]') # misc_par_1=26, misc_par_2=25
+# # Macro Motor: SpecMotor(mne='s2_hoff', config_line='40', macro_prefix='slit', mac_parms='[3, 1]') # misc_par_1=26, misc_par_2=25
+
 # ----------------------------------------------------
 ## EXAMPLES OF OTHER DEVICES THAT YOU CAN USE
 
@@ -24,11 +129,6 @@ apsbits.utils.sim_creator.predefined_device:
 # - {name: m2, prefix: gp:m2, labels: ["motor"]}
 # - {name: m3, prefix: gp:m3, labels: ["motor"]}
 # - {name: m4, prefix: gp:m4, labels: ["motor"]}
-
-# ophyd.scaler.ScalerCH:
-# - name: scaler1
-#   prefix: vme:scaler1
-#   labels: ["scalers", "detectors"]
 
 # ophyd.EpicsSignal:
 # - name: usercalc_xmap_filename
@@ -51,16 +151,6 @@ apsbits.utils.sim_creator.predefined_device:
 #           write_path_template: "/path/to/ioc/tmp/"
 #       - roi1
 #       - stats1
-
-# apstools.devices.motor_factory.mb_creator:
-# - name: xyz_stage
-#   labels: ["baseline"]
-#   prefix: "ioc:"              # bundle prefix; prepended to each motor's PV
-#   class_name: SomeXyzStage    # name for the synthesized class (cosmetic)
-#   motors:
-#     x: "m20"    # full motor PV is ioc:m20
-#     y: "m21"
-#     z: "m22"
 
 # apstools.synApps.Optics2Slit2D_HV:
 # - name: slit1
