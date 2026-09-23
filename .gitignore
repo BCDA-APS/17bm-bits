@@ -163,6 +163,7 @@ cython_debug/
 
 # Developer content
 dev_*
+.nogit_*
 
 **/existing_plans_and_devices.yaml
 .vscode/

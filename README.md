@@ -2,14 +2,25 @@
 
 Bluesky BITS instrument for the 17-BM powder diffraction beamline.
 
+## Documentation
+
+**New to Bluesky or 17BM?** Start with the [User Documentation](docs/README.md)
+
+The documentation covers:
+- [Getting started with your first session](docs/first-steps.md)
+- [SPEC to Bluesky command mapping (for SPEC users)](docs/spec-to-bluesky.md)
+- [Hardware device reference](docs/devices.md)
+- [Writing custom experiment plans](docs/getting-started-custom-plans.md)
+- [System architecture and design](docs/architecture.md)
+
+Choose your starting point in [docs/README.md](docs/README.md).
+
 ## Session startup
 
 You can start a bluesky session in any directory using IPython console
 session or Jupyter notebook.  From IPython:
 
 ```bash
-bash
-source /APSshare/miniconda/x86_64/bin/activate
 conda activate 17bm-bits
 ipython -i -c "from bm17.startup import *"
 ```
