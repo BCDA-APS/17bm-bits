@@ -58,12 +58,13 @@ Temperature tolerance (done checking)::
     ptc10.inposition          # boolean: True when within tolerance
 """
 
-from apstools.devices import (
-    PTC10AioChannel,
-    PTC10PositionerMixin,
-    PTC10RtdChannel,
-)
-from ophyd import Component, EpicsSignalRO, EpicsSignalWithRBV, PVPositioner
+from apstools.devices import PTC10AioChannel
+from apstools.devices import PTC10PositionerMixin
+from apstools.devices import PTC10RtdChannel
+from ophyd import Component
+from ophyd import EpicsSignalRO
+from ophyd import EpicsSignalWithRBV
+from ophyd import PVPositioner
 
 
 class BM17_PTC10AioChannelFixed(PTC10AioChannel):
