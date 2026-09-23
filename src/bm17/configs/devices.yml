@@ -53,8 +53,8 @@ apstools.devices.motor_factory.mb_creator:
     x: m10
     y: m11
     r: m12
-- name: sample_table
-  class_name: SampleTableStage
+- name: monotab
+  class_name: MonochromatorTableStage
   labels: ["baseline"]
   prefix: "17bm:"
   motors:
