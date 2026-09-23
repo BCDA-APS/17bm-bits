@@ -15,6 +15,9 @@ The documentation covers:
 
 Choose your starting point in [docs/README.md](docs/README.md).
 
+Or see [DeepWiki](https://deepwiki.com/BCDA-APS/17bm-bits) for an independent analysis and AI-assisted tool.
+
+
 ## Session startup
 
 You can start a bluesky session in any directory using IPython console
