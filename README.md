@@ -1,4 +1,4 @@
-# BITS Starter
+# 17-BM-B Powder Diffraction Instrument
 
 Bluesky BITS instrument for the 17-BM powder diffraction beamline.
 
